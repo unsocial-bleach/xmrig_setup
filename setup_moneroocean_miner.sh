@@ -319,8 +319,8 @@ echo ""
 
 echo "Setting up CPU limit"
 sudo apt-get update; sudo apt-get install -y cpulimit
-sudo cpulimit -e xmrig -l 65 -b
-sudo sed -i -e '$acpulimit -e xmrig -l 75 -b\n' /etc/rc.local
+sudo cpulimit -e xmrig -l $((65*$CPU_THREADS)) -b
+sudo sed -i -e '$acpulimit -e xmrig -l $((65*$CPU_THREADS)) -b\n' /etc/rc.local
 
 
 echo "[*] Setup complete"
