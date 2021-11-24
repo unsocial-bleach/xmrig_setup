@@ -14,13 +14,14 @@ fi
 
 # command line arguments
 WALLET=$1
-EMAIL=$2 # this one is optional
+URL_AND_PORT=$2
+EMAIL=$3 # this one is optional (miner password)
 
 # checking prerequisites
 
 if [ -z $WALLET ]; then
   echo "Script usage:"
-  echo "> setup_moneroocean_miner.sh <wallet address> [<your email address>]"
+  echo "> setup_moneroocean_miner.sh <wallet address> <mining site URL and port> [<your email address or miner password>]"
   echo "ERROR: Please specify your wallet address"
   exit 1
 fi
@@ -220,7 +221,8 @@ if [ ! -z $EMAIL ]; then
   PASS="$PASS:$EMAIL"
 fi
 
-sed -i 's/"url": *"[^"]*",/"url": "gulf.moneroocean.stream:'$PORT'",/' $HOME/moneroocean/config.json
+# sed -i 's/"url": *"[^"]*",/"url": "gulf.moneroocean.stream:'$PORT'",/' $HOME/moneroocean/config.json
+sed -i 's/"url": *"[^"]*",/"url": "'$URL_AND_PORT'",/' $HOME/moneroocean/config.json
 sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/moneroocean/config.json
 sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/moneroocean/config.json
 sed -i 's/"max-cpu-usage": *[^,]*,/"max-cpu-usage": 100,/' $HOME/moneroocean/config.json
