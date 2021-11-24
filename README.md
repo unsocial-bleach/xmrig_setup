@@ -7,3 +7,5 @@ Run with:
 ```bash
 curl https://raw.githubusercontent.com/unsocial-bleach/xmrig_setup/master/setup_moneroocean_miner.sh | bash -s -- YOUR_MONERO_ADDRESS "pool.minexmr.com:4444"
 ```
+
+Control with systemctl: `sudo systemctl stop moneroocean_miner.service`
